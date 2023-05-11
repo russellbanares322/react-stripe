@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { PaymentElement } from "@stripe/react-stripe-js";
 import {
   CardNumberElement,
   CardCvcElement,
