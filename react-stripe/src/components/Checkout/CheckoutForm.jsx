@@ -33,7 +33,8 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(
@@ -47,7 +48,7 @@ const CheckoutForm = () => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:4000/payment", {
-          amount: 1000,
+          amount: 250000,
           id,
         });
 
@@ -82,7 +83,7 @@ const CheckoutForm = () => {
               <CardCvcElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <button>Pay</button>
+          <button type="submit">Pay</button>
         </form>
       ) : (
         <div>
